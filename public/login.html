@@ -7,18 +7,23 @@
             <div class="wrapper">
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Email</span>
-                    <input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
+                    <input type="text" ng-model="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon2">Password</span>
-                    <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon2">
+                    <input type="password" ng-model="password" class="form-control" placeholder="Password" aria-describedby="basic-addon2">
                 </div>
                 <br>
                 <div class="input-group btn-group btn-group-justified">
-                    <a href="#" class="btn btn-danger">Cancel</a>
-                    <a href="#" class="btn btn-success">Login</a>
+                    <a class="btn btn-danger" href="/">Cancel</a>
+                    <a class="btn btn-success" ng-click="doLogin()">Login</a>
                 </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon">No Account? <a href="/signup">SignUp here</a></span>
+                </div>
+                <br>
             </div>
             <br>
         </div>

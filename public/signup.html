@@ -7,32 +7,27 @@
             <div class="wrapper">
                 <div class="input-group">
                     <span class="input-group-addon" id="Firstname">Firstname</span>
-                    <input type="text" class="form-control" placeholder="Firstname" aria-describedby="Firstname">
+                    <input ng-model="firstname" type="text" class="form-control" placeholder="Firstname" aria-describedby="Firstname">
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon" id="Lastname">Lastname</span>
-                    <input type="text" class="form-control" placeholder="Lastname" aria-describedby="Lastname">
+                    <input ng-model="lastname" type="text" class="form-control" placeholder="Lastname" aria-describedby="Lastname">
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon" id="Email">Email</span>
-                    <input type="text" class="form-control" placeholder="Email" aria-describedby="Email">
+                    <input ng-model="email" type="text" class="form-control" placeholder="Email" aria-describedby="Email">
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon" id="Password">Password</span>
-                    <input type="text" class="form-control" placeholder="Password" aria-describedby="Password">
-                </div>
-                <br>
-                <div class="input-group">
-                    <span class="input-group-addon" id="confirm">Password</span>
-                    <input type="password" class="form-control" placeholder="Confirm Password" aria-describedby="confirm">
+                    <input ng-model="password" type="password" class="form-control" placeholder="Password" aria-describedby="Password">
                 </div>
                 <br>
                 <div class="input-group btn-group btn-group-justified">
-                    <a href="#" class="btn btn-danger">Cancel</a>
-                    <a href="#" class="btn btn-success">SignUp</a>
+                    <a href="" class="btn btn-danger">Cancel</a>
+                    <a class="btn btn-success" ng-click="doSignUp()">SignUp</a>
                 </div>
             </div>
             <br>

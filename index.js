@@ -13,7 +13,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({resave: true, saveUninitialized: true, secret: 'historychromeapplication', cookie: { maxAge: 6000000 }}));
+app.use(session({resave: true, saveUninitialized: true, secret: 'wardroberApplication', cookie: { maxAge: 6000000 }}));
 router.use('/', express.static('app', { redirect: false }));
 app.get('/', function(req, res) {
     //console.log("entered here");
@@ -30,6 +30,15 @@ app.use(express.static(__dirname + '/public'));
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+
+
+
+var authentication = require('./routes/authentication');
+
+
+app.post('/api/login', authentication.doLogin);
+app.post('/api/signup', authentication.doSignUp);
+app.get('/api/logout', authentication.doLogout);
 
 app.get('/', function(request, response) {
   response.render('pages/index');
