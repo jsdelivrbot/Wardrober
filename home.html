@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Wardrober</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+    <div class="row profile">
+    <div class="col-md-2 w3-panel w3-card">
+      <br> 
+      <div class="profile-sidebar" align="center">
+        <!-- SIDEBAR USERPIC -->
+        <div class="profile-userpic">
+          <img src="https://www.watsonmartin.com/wp-content/uploads/2016/03/default-profile-picture.jpg" class="img-responsive" height="100" width="100" alt="">
+        </div>
+        <!-- END SIDEBAR USERPIC -->
+        <!-- SIDEBAR USER TITLE -->
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name" align="center">
+          <br>
+          
+          </div>
+        </div>
+        <!-- END SIDEBAR BUTTONS -->
+        <!-- SIDEBAR MENU -->
+        <div class="profile-usermenu">
+          <ul class="nav">
+            <li class="active">
+              <a href="#">Home </a>
+            </li>
+            <li>
+              <a href="#">Gallery</a>
+            </li>
+            <li>
+              <a href="#" target="_blank">Logout </a>
+            </li>
+             <li>
+              &nbsp
+            </li>
+          </ul>
+        </div>
+        <!-- END MENU -->
+      </div>
+    </div>
+    <div class="col-md-1">
+      <p></p>
+    </div>
+    <div class="col-md-8 w3-panel w3-card">
+      <div class="profile-content">
+        <div class="row text-center">
+          <h3>Upload images</h3>
+          <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Browse</a>
+        </div>
+        <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Select an image to upload into Gallery</h4>
+              </div>
+              <div class="modal-body">
+                <h3>Modal Body</h3>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Upload</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+        <style>
+          p {
+            text-align: justify;
+            text-justify: inter-word;
+          }
+        </style>
+          <p>The project is intended towards developing a website where people can upload their collection of clothes in their account after signing up. Once logged in, as a wardrobe stylist we shall create outfits based on their collection and advise outfit for the day. That is if the user chooses a shirt we shall pair it up with matching trouser or pant. Similarly, vice-versa. Using Google’s cloud vision API we shall find the color and type of clothing uploaded. All of the above will be implemented using Node JS, Angular JS and web technologies.</p>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
