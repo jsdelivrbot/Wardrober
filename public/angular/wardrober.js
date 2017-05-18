@@ -11,18 +11,18 @@ wardroberapp.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'login.html',
                 controller: 'loginController'
             }).when('/signup', {
-            templateUrl: 'signup.html',
-            controller: 'signupController'
-        }).when('/home', {
-            templateUrl: 'home.html',
-            controller: 'homeController'
-        }).when('/gallery', {
-            templateUrl: 'gallery.html',
-            controller: 'galleryController'
-        }).otherwise({
-            templateUrl: 'login.html',
-            controller: 'loginController'
-        });
+                templateUrl: 'signup.html',
+                controller: 'signupController'
+            }).when('/home', {
+                templateUrl: 'home.html',
+                controller: 'homeController'
+            }).when('/gallery', {
+                templateUrl: 'gallery.html',
+                controller: 'galleryController'
+            }).otherwise({
+                templateUrl: 'login.html',
+                controller: 'loginController'
+            });
         $locationProvider.html5Mode(true);
     }
 ]);

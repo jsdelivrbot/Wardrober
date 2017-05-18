@@ -1,36 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-</head>
-<body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Wardrober</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-    </ul>
-  </div>
-</nav>
-<div class="container">
-    <div class="row profile">
+<div class="ng-scope wrapper container">
+  <div class="row profile">
     <div class="col-md-2 w3-panel w3-card">
-      <br> 
+      <br>
       <div class="profile-sidebar" align="center">
         <div class="profile-userpic">
           <img src="https://www.watsonmartin.com/wp-content/uploads/2016/03/default-profile-picture.jpg" class="img-responsive" height="100" width="100" alt="">
         </div>
         <div class="profile-usertitle">
           <div class="profile-usertitle-name" align="center">
-          <br>
+            <br>
           </div>
         </div>
         <div class="profile-usermenu">
@@ -44,7 +22,7 @@
             <li>
               <a ng-click="doLogout()">Logout </a>
             </li>
-             <li>
+            <li>
               &nbsp
             </li>
           </ul>
@@ -78,12 +56,12 @@
           </div>
         </div>
         <div>
-        <style>
-          p {
-            text-align: justify;
-            text-justify: inter-word;
-          }
-        </style>
+          <style>
+            p {
+              text-align: justify;
+              text-justify: inter-word;
+            }
+          </style>
           <p>The project is intended towards developing a website where people can upload their collection of clothes in their account after signing up. Once logged in, as a wardrobe stylist we shall create outfits based on their collection and advise outfit for the day. That is if the user chooses a shirt we shall pair it up with matching trouser or pant. Similarly, vice-versa. Using Google’s cloud vision API we shall find the color and type of clothing uploaded. All of the above will be implemented using Node JS, Angular JS and web technologies.</p>
         </div>
         <br>
@@ -91,5 +69,3 @@
     </div>
   </div>
 </div>
-</body>
-</html>
