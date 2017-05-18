@@ -2,7 +2,18 @@
  * Created by Student on 5/18/17.
  */
 wardroberapp.controller('loginController', function ($scope, $http) {
-   //alert("angular works");
+
+    var isUserLoggedIn = function() {
+        var isLoggedInResponse = $http.get('/api/isLoggedIn');
+        isLoggedInResponse.success(function(data) {
+            if(data.status != 200) {
+                window.location = "/home";
+            }
+        });
+    };
+    isUserLoggedIn();
+
+    //alert("angular works");
     $scope.doLogin = function() {
         $http({
             method: 'POST',

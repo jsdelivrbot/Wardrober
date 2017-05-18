@@ -3,6 +3,17 @@
  */
 
 wardroberapp.controller('signupController', function ($scope, $http) {
+
+    var isUserLoggedIn = function() {
+        var isLoggedInResponse = $http.get('/api/isLoggedIn');
+        isLoggedInResponse.success(function(data) {
+            if(data.status != 200) {
+                window.location = "/home";
+            }
+        });
+    };
+    isUserLoggedIn();
+
     //alert("angular works");
     $scope.doSignUp = function() {
         $http({

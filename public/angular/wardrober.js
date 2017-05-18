@@ -16,6 +16,9 @@ wardroberapp.config(['$routeProvider', '$locationProvider',
         }).when('/home', {
             templateUrl: 'home.html',
             controller: 'homeController'
+        }).when('/gallery', {
+            templateUrl: 'gallery.html',
+            controller: 'galleryController'
         }).otherwise({
             templateUrl: 'login.html',
             controller: 'loginController'

@@ -39,6 +39,20 @@ var authentication = require('./routes/authentication');
 app.post('/api/login', authentication.doLogin);
 app.post('/api/signup', authentication.doSignUp);
 app.get('/api/logout', authentication.doLogout);
+app.get('/api/isLoggedIn', function(request, response) {
+   if(request.session && request.session.user) {
+       response.send({
+           "status": 200,
+           "message": "User logged In"
+       });
+   }
+   else {
+       response.send({
+           "status": 401,
+           "errmsg": "User unauthorized"
+       });
+   }
+});
 
 app.get('/', function(request, response) {
   response.render('pages/index');

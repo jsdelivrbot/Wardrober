@@ -25,37 +25,30 @@
     <div class="col-md-2 w3-panel w3-card">
       <br> 
       <div class="profile-sidebar" align="center">
-        <!-- SIDEBAR USERPIC -->
         <div class="profile-userpic">
           <img src="https://www.watsonmartin.com/wp-content/uploads/2016/03/default-profile-picture.jpg" class="img-responsive" height="100" width="100" alt="">
         </div>
-        <!-- END SIDEBAR USERPIC -->
-        <!-- SIDEBAR USER TITLE -->
         <div class="profile-usertitle">
           <div class="profile-usertitle-name" align="center">
           <br>
-          
           </div>
         </div>
-        <!-- END SIDEBAR BUTTONS -->
-        <!-- SIDEBAR MENU -->
         <div class="profile-usermenu">
           <ul class="nav">
             <li class="active">
-              <a href="#">Home </a>
+              <a href="/home">Home </a>
             </li>
             <li>
-              <a href="#">Gallery</a>
+              <a href="/gallery">Gallery</a>
             </li>
             <li>
-              <a href="#" target="_blank">Logout </a>
+              <a ng-click="doLogout()">Logout </a>
             </li>
              <li>
               &nbsp
             </li>
           </ul>
         </div>
-        <!-- END MENU -->
       </div>
     </div>
     <div class="col-md-1">
