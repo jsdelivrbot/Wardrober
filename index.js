@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var session = require('express-session');
 var bodyParser = require('body-parser');
+var path = require('path');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -10,7 +11,10 @@ app.use(express.static(__dirname + '/public'));
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+//app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+//app.use(express.methodOverride());
 app.use(session({resave: true, saveUninitialized: true, secret: 'wardroberApplication', cookie: { maxAge: 6000000 }}));
 
 app.get('/', function(req, res) {
@@ -21,26 +25,9 @@ app.get('/', function(req, res) {
 
 var logger = require('morgan');
 app.use(logger('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
-//router.use('/', express.static('app', { redirect: false }));
-app.get('/', function(req, res) {
-    //console.log("entered here");
-    //console.log(req.session.profile);
-    if(req.session.profile) {
-        res.sendfile(__dirname + '/public/home.html');
-    }
-    else {
-        res.sendfile(__dirname + '/public/index.html');
-    }
-});
-//app.use(express.static(__dirname + '/public'));
-
-// views is directory for all template files
-// app.set('views', __dirname + '/views');
-// app.set('view engine', 'ejs');
 
 var authentication = require('./routes/authentication');
-
+var imageStorage = require('./routes/imageStorage');
 
 app.post('/api/login', authentication.doLogin);
 app.post('/api/signup', authentication.doSignUp);
@@ -59,6 +46,19 @@ app.get('/api/isLoggedIn', function(request, response) {
        });
    }
 });
+
+/**
+ * core API
+ */
+var mongoURL = "mongodb://vaishnavi:marias@ds147551.mlab.com:47551/wardrober";
+
+var multer = require("multer");
+var storage = require('multer-gridfs-storage')({
+    url: mongoURL
+});
+// Set multer storage engine to the newly created object
+var upload = multer({ storage: storage });
+app.post('/api/users/images', upload.single('avatar'), imageStorage.postImagesForUserByPuid);
 
 app.get('/', function(request, response) {
   response.render('pages/index');
