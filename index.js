@@ -1,21 +1,27 @@
 var express = require('express');
 var app = express();
-
-var router = express.Router();
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
 var session = require('express-session');
+var bodyParser = require('body-parser');
+
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 
-app.use(logger('dev'));
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(session({resave: true, saveUninitialized: true, secret: 'wardroberApplication', cookie: { maxAge: 6000000 }}));
+
+app.get('/', function(req, res) {
+    res.sendfile(__dirname + '/public/index.html');
+});
+
+// serve angular front end files from root path
+
+var logger = require('morgan');
+app.use(logger('dev'));
+app.use(bodyParser.urlencoded({ extended: false }));
 //router.use('/', express.static('app', { redirect: false }));
 app.get('/', function(req, res) {
     //console.log("entered here");
@@ -30,10 +36,8 @@ app.get('/', function(req, res) {
 //app.use(express.static(__dirname + '/public'));
 
 // views is directory for all template files
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-
-
+// app.set('views', __dirname + '/views');
+// app.set('view engine', 'ejs');
 
 var authentication = require('./routes/authentication');
 

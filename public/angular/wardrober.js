@@ -5,7 +5,7 @@
 var wardroberapp = angular.module('wardroberapp', ['ngRoute']);
 //console.log(history.config);
 wardroberapp.config(['$routeProvider', '$locationProvider',
-    function ($routeProvider, $locationProvider, $routeParams) {
+    function ($routeProvider, $locationProvider, $routeParams, $location) {
         $routeProvider
             .when('/', {
                 templateUrl: 'login.html',

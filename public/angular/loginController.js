@@ -1,13 +1,13 @@
 /**
  * Created by Student on 5/18/17.
  */
-wardroberapp.controller('loginController', function ($scope, $http) {
+wardroberapp.controller('loginController', function ($scope, $http, $location) {
 
     var isUserLoggedIn = function() {
         var isLoggedInResponse = $http.get('/api/isLoggedIn');
         isLoggedInResponse.success(function(data) {
-            if(data.status == 200) {
-                window.location.assign("/home");
+            if(data.status != 200) {
+                //window.location = "/home";
             }
         });
     };
@@ -26,7 +26,7 @@ wardroberapp.controller('loginController', function ($scope, $http) {
                 'Content-Type': 'application/json'
             }
         }).success(function(data) {
-            window.location = "/home";
+            $location.url('/home');
         });
 
     };
