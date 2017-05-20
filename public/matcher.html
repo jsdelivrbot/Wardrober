@@ -1,61 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-</head>
-<body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Wardrober</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-    </ul>
-  </div>
-</nav>
-<div class="container">
-    <div class="row profile">
+<div class="ng-scope wrapper container">
+  <div class="row profile">
     <div class="col-md-2 w3-panel w3-card">
-      <br> 
+      <br>
       <div class="profile-sidebar" align="center">
-        <!-- SIDEBAR USERPIC -->
         <div class="profile-userpic">
           <img src="https://www.watsonmartin.com/wp-content/uploads/2016/03/default-profile-picture.jpg" class="img-responsive" height="100" width="100" alt="">
         </div>
-        <!-- END SIDEBAR USERPIC -->
-        <!-- SIDEBAR USER TITLE -->
         <div class="profile-usertitle">
           <div class="profile-usertitle-name" align="center">
-          <br>
-          
+            <br>
           </div>
         </div>
-        <!-- END SIDEBAR BUTTONS -->
-        <!-- SIDEBAR MENU -->
         <div class="profile-usermenu">
           <ul class="nav">
             <li class="active">
-              <a href="#">Home </a>
+              <a href="/home">Home </a>
             </li>
             <li>
-              <a href="#">Gallery</a>
+              <a href="/gallery">Gallery</a>
             </li>
             <li>
-              <a href="#" target="_blank">Logout </a>
+              <a href="/" ng-click="doLogout()">Logout </a>
             </li>
-             <li>
+            <li>
               &nbsp
             </li>
           </ul>
         </div>
-        <!-- END MENU -->
       </div>
     </div>
     <div class="col-md-1">
@@ -65,7 +36,7 @@
       <div class="profile-content">
         <div class="container">
           <h2>Wardrober says:</h2>
-          <p>The image you selected: </p>    
+          <p>The image you selected: </p>
           <div class="row">
             <div class="col-md-4">
               <img src="https://madeby.google.com/static/images/google_g_logo.svg" class="img-rounded" alt="Cinque Terre" width="360" height="270">
@@ -75,7 +46,7 @@
             </div>
           </div>
           <br><br>
-          <p>The matches we found: </p>    
+          <p>The matches we found: </p>
           <div class="row">
             <div class="col-md-4">
               <img src="https://madeby.google.com/static/images/google_g_logo.svg" class="img-rounded" alt="Cinque Terre" width="360" height="270">
@@ -116,5 +87,3 @@
     </div>
   </div>
 </div>
-</body>
-</html>

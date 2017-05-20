@@ -2,7 +2,8 @@
  * Created by Student on 5/18/17.
  */
 wardroberapp.controller('loginController', function ($scope, $http, $location) {
-
+    //$("div#divLoading").addClass('show');
+    //$('#preloader').fadeOut('slow',function(){$(this).remove();});
     var isUserLoggedIn = function() {
         var isLoggedInResponse = $http.get('/api/isLoggedIn');
         isLoggedInResponse.success(function(data) {

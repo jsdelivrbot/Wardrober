@@ -1,3 +1,6 @@
+/**
+ * Created by Student on 5/19/17.
+ */
 var express = require('express');
 var app = express();
 var session = require('express-session');
@@ -33,18 +36,18 @@ app.post('/api/login', authentication.doLogin);
 app.post('/api/signup', authentication.doSignUp);
 app.get('/api/logout', authentication.doLogout);
 app.get('/api/isLoggedIn', function(request, response) {
-   if(request.session && request.session.user) {
-       response.send({
-           "status": 200,
-           "message": "User logged In"
-       });
-   }
-   else {
-       response.send({
-           "status": 401,
-           "errmsg": "User unauthorized"
-       });
-   }
+    if(request.session && request.session.user) {
+        response.send({
+            "status": 200,
+            "message": "User logged In"
+        });
+    }
+    else {
+        response.send({
+            "status": 401,
+            "errmsg": "User unauthorized"
+        });
+    }
 });
 
 /**
@@ -52,20 +55,33 @@ app.get('/api/isLoggedIn', function(request, response) {
  */
 var mongoURL = "mongodb://vaishnavi:marias@ds147551.mlab.com:47551/wardrober";
 
-var multer = require("multer");
-var storage = require('multer-gridfs-storage')({
-    url: mongoURL
+var multer = require('multer');
+var uuid = require('node-uuid');
+var image_name = uuid.v4() + ".png";
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/uploads/')
+    },
+    filename: function (req, file, cb) {
+        image_name = uuid.v4() + ".png";
+        cb(null, image_name)
+    }
 });
-// Set multer storage engine to the newly created object
-var upload = multer({ storage: storage });
-app.post('/api/users/images', upload.single('avatar'), imageStorage.postImagesForUserByPuid);
+
+//var upload = multer({dest: 'public/uploads/'});
+var upload = multer({ storage: storage })
+
+app.post('/api/users/images', upload.single('image'), function(request, response) {
+    imageStorage.postImagesForUserByPuid(request, response, image_name);
+});
+app.get('/api/users/images', imageStorage.getImageUrlsForUserByPuid);
+app.get('/api/users/images/:imageName', imageStorage.getImageByImageUrl);
 
 app.get('/', function(request, response) {
-  response.render('pages/index');
+    response.render('pages/index');
 });
 
 app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+    console.log('Node app is running on port', app.get('port'));
 });
-
-

@@ -5,6 +5,8 @@
 
 wardroberapp.controller('homeController', function ($scope, $http) {
 
+    //$("div#divLoading").addClass('show');
+    //$('#preloader').fadeOut('slow',function(){$(this).remove();});
     var isUserLoggedIn = function() {
       var isLoggedInResponse = $http.get('/api/isLoggedIn');
       isLoggedInResponse.success(function(data) {
@@ -33,6 +35,13 @@ wardroberapp.controller('homeController', function ($scope, $http) {
         console.log($scope.filesInfo[0]);
     };
 
+    bootstrap_alert = function() {};
+    bootstrap_alert.warning = function(message) {
+        $('#alert_placeholder').html('<div class="alert alert-success alert-dismissable"> <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> <strong>Success!</strong> Your image is uploaded successfully!!!. </div>');
+    };
+
+
+
     $scope.upload_image = function() {
         var reqData = new FormData();
         reqData.append("image", $scope.filesInfo[0]);
@@ -46,7 +55,11 @@ wardroberapp.controller('homeController', function ($scope, $http) {
             },
             transformRequest: angular.identity
         }).success(function(data) {
-            $("#myModal").modal();
+            $('#basicModal').modal('toggle');
+            //jQuery.noConflict();
+            //$('#myModal').modal();
+            bootstrap_alert.warning('Your text goes here');
+            //$("div#divLoading").removeClass('show');
         });
     };
 });

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "wardrober-168122",
+  "private_key_id": "3c1d3794aa73700833c52fb11e5f462e3dab761f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCZpt9QsMqWvg4I\ng8yt9b59h36azg9vRlDBSieTaqGtkOMm82eEXdiiWrfa4XoG/PKsMPRXC+8Qhv7g\nR2jnFBBOy2C1c6hwzqsH0kr+8yj1dRiwy4ju4pPJvo3vt9ZpWHQ/hOnuLK0z90EZ\nLXuYVa/62Qbvc9Pya1dEHd+J0+EtR+JzKk1J44k7p3jWk0M2L8OWXmQmgkyZ8D3r\nYQ9PxPYou5aQj9T4jbny+9rApI8B3ZBPoXYdqYxYDKBQW3drfjGrZSolIeH9BDaY\nfde1oTttaOugJalqIraJ60oodKmF6hPm+sAYmk6VGOEv9w2ovMtGuMNsiSPYJXXV\nctc5RgdRAgMBAAECggEAQ60ue1oDQXYgtDtpMc4lwyCk8QaF4ds0wo4o9FNpNwu0\nIXngRHsZahlPFcduehl7wcAmPxjwiXUMWjjZyb4amLoXtJRmwpkk1+MWSUlM5yBW\nabicbau6sIeP+OAePnRJb5jZeKCRAWyMbcyMvcIwKurglSONXR9OZqBJz2lVqx1p\nYQHIW6wau1zht0YGm0bBKzAtjxNcIBQKoGv/fa1MfxUjQo2yc0AN7J7LQ9mh/abf\ndZXAUh4ugXKSrK60r5oKuASgL+6q4wY/IQql2V323K2RWvGQibeO1ioYhcyQSw3U\na52jhzlfAirjK8cxBC1/0Y2xoEOgDerPvzPmUOuLaQKBgQDTF9rbv9ONKaTJoLV5\nwIXBLQbA4TDZETgB2NaGMRtINiKfdBFfF7Nn4tKRlaXtgWOnFLmjybZzylRJz1oU\n0ksXJTt8EqfVR/5O5xWn7sWDIev5HNqGCFD+R8StvRaKzJ2prO8kNL3ZGJ58U/x9\nTd63OrNqkTbzeRdUcWepcTUXAwKBgQC6VsJiwFoImPU/coeV52sA0M8OJMMrz2IG\npOJ6IoE4NIeY+6v7lxRhqnNAK2UHWtSSywJN0KMdGPuB4LhwHITVXdEQPgOKZSkT\nkC/zt/8IUbE35V8meYhszp7hYd5gWsa3lVHxuup4HYzGiCHTrEa+wetjIHwZVbfA\n6x1zzOjeGwKBgB/qqm+xaFYepsjJoMbA4jhcC3pcUhtv7AzzcTQm9p4LeV6smPfM\nyJZ7iCT1AHqRprSbgJoQJKMLQ4VJcbBWP35HZeATnga0dPIPJIoYowp5tYkb4LqF\nRWG9DjLKtT7VQz1lZV8PDmllvIjF1hZIENWZbYk+XZWgiHN/FhJbiJBrAoGBAJa7\nk+b6HlqSEOFQLimu17oDL1sLle2chnlFbAbMXqcupvmzq/2KyuvuS+h+sezvJsHQ\nAn8b5Lam/NylAc1+5F0M1Q9Eeuy6xC2VF5UZI+6A1tCWdQ/Ug+0wfwlmd9KN2+2p\nlm3qe7zKepQmjuaBl4C7sUOwhXKhClG+X0bLXRw9AoGBAMg3/xjyRLKQMW0QRxjF\ndPbNv/1JOxfFyY6hcj6QePwu7TWTOAeFRV7V9Lx8axOTSt1lfqcPzConP/3S/NdM\nngP+On9SP9WzYmS1Vu47hISK1xjP1P+kFwgQy5WVoqC5E/ATz+fswpJLZ6uY5K59\nVUClND3S5Pu2PA4xmtMTSL+D\n-----END PRIVATE KEY-----\n",
+  "client_email": "ward-service@wardrober-168122.iam.gserviceaccount.com",
+  "client_id": "115427547164447824701",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ward-service%40wardrober-168122.iam.gserviceaccount.com"
+}

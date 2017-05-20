@@ -17,7 +17,7 @@ exports.doLogin = function(request, response) {
     mongo.connect(mongoURL, function() {
         var usersCollection = mongo.collection('Users');
         mongoDbHelper.readOne(usersCollection,{'email':email},null, function(data) {
-            console.log(data);
+            //console.log(data);
             if(data == undefined){
                 response.send({
                     "status": 401,
@@ -56,7 +56,7 @@ exports.doSignUp = function(request, response) {
     mongo.connect(mongoURL, function() {
         var usersCollection = mongo.collection('Users');
         mongoDbHelper.readOne(usersCollection,{'email':user.email},null,function(data){
-            console.log(data);
+            //console.log(data);
             if(data == undefined){
                 console.log("registering in db");
                 mongoDbHelper.insertIntoCollection(usersCollection, user, function() {

@@ -19,6 +19,9 @@ wardroberapp.config(['$routeProvider', '$locationProvider',
             }).when('/gallery', {
                 templateUrl: 'gallery.html',
                 controller: 'galleryController'
+            }).when('/api/users/images/:image_name/matches', {
+                templateUrl: 'matcher.html',
+                controller: 'matchController'
             }).otherwise({
                 templateUrl: 'login.html',
                 controller: 'loginController'
