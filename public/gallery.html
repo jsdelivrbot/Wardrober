@@ -48,12 +48,15 @@
           <div class="row">
             <div ng-repeat="url in urls">
               <div class="col-md-5">
+                <hr>
                 <img ng-src="{{url}}" alt = "Generic placeholder thumbnail" width="360" height="270">
-                <a href="{{url}}/matches" class="btn btn-info">Get matching clothes from Wardrober</a>
+                <a href="{{url}}/matches" class="btn btn-danger">Get matching clothes from Wardrober</a>
+                <a href="{{url}}/similar" class="btn btn-success">Get similar clothes from Wardrober</a>
               </div>
               <div ng-if="$index % 2 == 1">
                 <div class="col-md-2">
-                  <p></p>
+                  <p>
+                  </p>
                 </div>
                 <br>
                 <br>

@@ -34,8 +34,8 @@ wardroberapp.controller('matchController', function ($scope, $http, $location,  
     get_selected_image_details();
 
     var get_matches = function() {
-          //var match_response = $http.get('/api/users/images/' + $routeParams.image_name +'/results');
-          var match_response = $http.get('/api/users/images/aac9cf02-931e-4df4-adcf-d4313ec44759.png/results');
+          var match_response = $http.get('/api/users/images/' + $routeParams.image_name +'/results/different');
+          //var match_response = $http.get('/api/users/images/aac9cf02-931e-4df4-adcf-d4313ec44759.png/results');
           $scope.urls = [];
           match_response.success(function(data) {
               if(data.status == 200) {

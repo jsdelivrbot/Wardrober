@@ -78,7 +78,8 @@ app.post('/api/users/images', upload.single('image'), function(request, response
 });
 app.get('/api/users/images', imageStorage.getImageUrlsForUserByPuid);
 app.get('/api/users/images/:imageName', imageStorage.getImageByImageUrl);
-app.get('/api/users/images/:imageName/results', wardrobeMatcher.getMatchingImageURLs);
+app.get('/api/users/images/:imageName/results/different', wardrobeMatcher.getMatchingImageURLs);
+app.get('/api/users/images/:imageName/results/similar', wardrobeMatcher.getSimilarImageURLs);
 app.get('/api/users/images/:imageName/labels', wardrobeMatcher.getImageLabels);
 
 app.get('/', function(request, response) {

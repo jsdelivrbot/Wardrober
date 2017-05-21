@@ -14,19 +14,17 @@ var dbHelper = require('./mongo-db-helper');
  * @returns {*}
  */
 var get_matching_label = function(given_label) {
-    switch(given_label) {
-        case "t shirt":
-            return "shorts";
-        case "shorts":
-            return "t shirt";
-        case "clothing":
-            return "clothing";
-        default:
-            return null;
-    }
+    if(given_label == "shorts")
+        return "t shirt";
+    if(given_label == "t shirt")
+        return "shorts";
+    if(given_label == "clothing")
+        return "clothing";
+    else
+        return null;
 };
 
-var create_search_query = function(image_name, label_list) {
+var create_different_search_query = function(image_name, label_list) {
     /**
      *
      * {
@@ -48,7 +46,9 @@ var create_search_query = function(image_name, label_list) {
     searchData["$and"] = [];
     label_list.forEach(function (label_entry) {
         var result = get_matching_label(label_entry);
+        //console.log(result);
         if(result != null) {
+            console.log(label_entry + ' ' + result);
             var label_json = {};
             label_json["$in"] = [];
             label_json["$in"].push(result);
@@ -57,6 +57,60 @@ var create_search_query = function(image_name, label_list) {
             searchData["$and"].push(label_object);
         }
     });
+    console.log(JSON.stringify(searchData));
+    return searchData;
+};
+
+/**
+ *
+ * @param given_label
+ * @returns {*}
+ */
+var get_same_label = function(given_label) {
+    if(given_label == "shorts")
+        return given_label;
+    if(given_label == "t shirt")
+        return given_label;
+    if(given_label == "clothing")
+        return "clothing";
+    else
+        return null;
+};
+
+var create_similar_search_query = function(image_name, label_list) {
+    /**
+     *
+     * {
+            "image": "5f972961-812f-49b2-aa65-d7fffe68c769.png",
+            "$and": [{
+                "labels": {
+                    "$in": ["t shirt"]
+                }
+            }, {
+                "labels": {
+                    "$in": ["pink"]
+                }
+            }]
+        }
+     *
+     */
+    var searchData = {};
+    searchData.image = image_name;
+    searchData["$and"] = [];
+    label_list.forEach(function (label_entry) {
+        var result = get_same_label(label_entry);
+        //console.log(result);
+        if(result != null) {
+            console.log(label_entry + ' ' + result);
+            var label_json = {};
+            label_json["$in"] = [];
+            label_json["$in"].push(result);
+            var label_object = {};
+            label_object["labels"] = label_json;
+            searchData["$and"].push(label_object);
+        }
+    });
+    console.log(JSON.stringify(searchData));
     return searchData;
 };
 
@@ -73,16 +127,52 @@ exports.getMatchingImageURLs = function(request, response) {
             var count = 0;
             dbHelper.readOne(image_details, {"image": image_name}, null, function (image_details_data) {
                 image_list.forEach(function(image_entry) {
-                    var search_data = create_search_query(image_entry, image_details_data.labels);
+                    var search_data = create_different_search_query(image_entry, image_details_data.labels);
                     count = count + 1;
-                    console.log(JSON.stringify(search_data));
+                    // console.log(JSON.stringify(search_data));
                     dbHelper.readOne(image_details, search_data, null, function (matched_data) {
-                        console.log(matched_data);
+                        // console.log(matched_data);
                         if(matched_data) {
                             var url = "api/users/images/" + matched_data.image;
                             urls.push(url);
                         }
-                        console.log(urls);
+                        // console.log(urls);
+                    });
+                });
+                setTimeout(function() {
+                    response.send({
+                        "status": 200,
+                        "urls": urls
+                    });
+                }, 5000);
+            });
+        });
+    });
+};
+
+exports.getSimilarImageURLs = function(request, response) {
+    mongo.connect(mongoURL, function() {
+        var images = mongo.collection('Images');
+        var image_details = mongo.collection('Image_details');
+        var image_name = request.params.imageName;
+        dbHelper.readOne(images, {"puid": request.session.user._id}, null, function (data) {
+            //console.log(JSON.stringify(data));
+            var image_list = data[request.session.user._id].images;
+            var urls = [];
+            var len = image_list.length;
+            var count = 0;
+            dbHelper.readOne(image_details, {"image": image_name}, null, function (image_details_data) {
+                image_list.forEach(function(image_entry) {
+                    var search_data = create_similar_search_query(image_entry, image_details_data.labels);
+                    count = count + 1;
+                    // console.log(JSON.stringify(search_data));
+                    dbHelper.readOne(image_details, search_data, null, function (matched_data) {
+                        // console.log(matched_data);
+                        if(matched_data) {
+                            var url = "api/users/images/" + matched_data.image;
+                            urls.push(url);
+                        }
+                        // console.log(urls);
                     });
                 });
                 setTimeout(function() {

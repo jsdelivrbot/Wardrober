@@ -22,7 +22,11 @@ wardroberapp.config(['$routeProvider', '$locationProvider',
             }).when('/api/users/images/:image_name/matches', {
                 templateUrl: 'matcher.html',
                 controller: 'matchController'
-            }).otherwise({
+            }).when('/api/users/images/:image_name/similar', {
+                templateUrl: 'similar.html',
+                controller: 'similarController'
+            })
+            .otherwise({
                 templateUrl: 'login.html',
                 controller: 'loginController'
             });
