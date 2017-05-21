@@ -39,48 +39,46 @@
           <p>The image you selected: </p>
           <div class="row">
             <div class="col-md-4">
-              <img src="https://madeby.google.com/static/images/google_g_logo.svg" class="img-rounded" alt="Cinque Terre" width="360" height="270">
+              <img ng-src="/api/users/images/{{image_name}}" class="img-rounded" alt="Cinque Terre" width="360" height="270">
             </div>
             <div class="col-md-4">
-              <p>attributes</p>
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th>Labels</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>{{labels}}</td>
+                </tr>
+                </tbody>
+              </table>
             </div>
           </div>
           <br><br>
           <p>The matches we found: </p>
-          <div class="row">
-            <div class="col-md-4">
-              <img src="https://madeby.google.com/static/images/google_g_logo.svg" class="img-rounded" alt="Cinque Terre" width="360" height="270">
+          <div ng-repeat = "urlentry in urls">
+            <div class="row">
+              <div class="col-md-4">
+                <img ng-src="{{urlentry.url}}" class="img-rounded" alt="Cinque Terre" width="360" height="270">
+              </div>
+              <div class="col-md-4">
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th>Labels</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>{{urlentry.labels}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <div class="col-md-4">
-              <p>attributes</p>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4">
-              <img src="https://madeby.google.com/static/images/google_g_logo.svg" class="img-rounded" alt="Cinque Terre" width="360" height="270">
-            </div>
-            <div class="col-md-4">
-              <p>attributes</p>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4">
-              <img src="https://madeby.google.com/static/images/google_g_logo.svg" class="img-rounded" alt="Cinque Terre" width="360" height="270">
-            </div>
-            <div class="col-md-4">
-              <p>attributes</p>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4">
-              <img src="https://madeby.google.com/static/images/google_g_logo.svg" class="img-rounded" alt="Cinque Terre" width="360" height="270">
-            </div>
-            <div class="col-md-4">
-              <p>attributes</p>
-            </div>
+            <br>
           </div>
         </div>
       </div>

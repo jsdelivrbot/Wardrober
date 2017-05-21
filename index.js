@@ -31,6 +31,7 @@ app.use(logger('dev'));
 
 var authentication = require('./routes/authentication');
 var imageStorage = require('./routes/imageStorage');
+var wardrobeMatcher = require('./routes/wardrobeMatcher');
 
 app.post('/api/login', authentication.doLogin);
 app.post('/api/signup', authentication.doSignUp);
@@ -77,6 +78,8 @@ app.post('/api/users/images', upload.single('image'), function(request, response
 });
 app.get('/api/users/images', imageStorage.getImageUrlsForUserByPuid);
 app.get('/api/users/images/:imageName', imageStorage.getImageByImageUrl);
+app.get('/api/users/images/:imageName/results', wardrobeMatcher.getMatchingImageURLs);
+app.get('/api/users/images/:imageName/labels', wardrobeMatcher.getImageLabels);
 
 app.get('/', function(request, response) {
     response.render('pages/index');
