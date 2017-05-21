@@ -56,7 +56,7 @@ app.get('/api/isLoggedIn', function(request, response) {
 var mongoURL = "mongodb://vaishnavi:marias@ds147551.mlab.com:47551/wardrober";
 
 var multer = require('multer');
-var uuid = require('node-uuid');
+var uuid = require('uuid');
 var image_name = uuid.v4() + ".png";
 
 var storage = multer.diskStorage({
