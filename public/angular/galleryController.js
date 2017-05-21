@@ -20,7 +20,7 @@ wardroberapp.controller('galleryController', function ($scope, $http, $location)
         var logout_response = $http.get('/api/logout');
         logout_response.success(function(data) {
             if(data.status == 200) {
-                $location.url('/');
+                //$location.url('/');
             }
         });
     };
