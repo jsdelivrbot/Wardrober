@@ -11,6 +11,7 @@ wardroberapp.controller('matchController', function ($scope, $http, $location,  
             if(data.status != 200) {
                 $location.url('/');
             }
+            $scope.user = data.user;
         });
     };
     isUserLoggedIn();

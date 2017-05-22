@@ -10,6 +10,7 @@ wardroberapp.controller('galleryController', function ($scope, $http, $location)
                 $location.url('/');
             }
             else {
+                $scope.user = data.user;
                 get_gallery();
             }
         });
