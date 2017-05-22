@@ -7,7 +7,7 @@ wardroberapp.controller('signupController', function ($scope, $http, $location) 
     var isUserLoggedIn = function() {
         var isLoggedInResponse = $http.get('/api/isLoggedIn');
         isLoggedInResponse.success(function(data) {
-            if(data.status != 200) {
+            if(data.status == 200) {
                 $location.url('/home');
             }
         });

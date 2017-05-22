@@ -31,6 +31,7 @@ app.use(logger('dev'));
 
 var authentication = require('./routes/authentication');
 var imageStorage = require('./routes/imageStorage');
+var wardrobeMatcher = require('./routes/wardrobeMatcher');
 
 app.post('/api/login', authentication.doLogin);
 app.post('/api/signup', authentication.doSignUp);
@@ -57,7 +58,7 @@ app.get('/api/isLoggedIn', function(request, response) {
 var mongoURL = "mongodb://vaishnavi:marias@ds147551.mlab.com:47551/wardrober";
 
 var multer = require('multer');
-var uuid = require('node-uuid');
+var uuid = require('uuid');
 var image_name = uuid.v4() + ".png";
 
 var storage = multer.diskStorage({
@@ -78,6 +79,9 @@ app.post('/api/users/images', upload.single('image'), function(request, response
 });
 app.get('/api/users/images', imageStorage.getImageUrlsForUserByPuid);
 app.get('/api/users/images/:imageName', imageStorage.getImageByImageUrl);
+app.get('/api/users/images/:imageName/results/different', wardrobeMatcher.getMatchingImageURLs);
+app.get('/api/users/images/:imageName/results/similar', wardrobeMatcher.getSimilarImageURLs);
+app.get('/api/users/images/:imageName/labels', wardrobeMatcher.getImageLabels);
 
 app.get('/', function(request, response) {
     response.render('pages/index');

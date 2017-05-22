@@ -11,7 +11,7 @@ var util = require('util');
 
 var mongoURL = "mongodb://vaishnavi:marias@ds147551.mlab.com:47551/wardrober";
 var dbHelper = require('./mongo-db-helper');
-var uuid = require('node-uuid');
+var uuid = require('uuid');
 var path = require('path');
 
 var vision = require('@google-cloud/vision')({
