@@ -39,7 +39,8 @@ app.get('/api/isLoggedIn', function(request, response) {
     if(request.session && request.session.user) {
         response.send({
             "status": 200,
-            "message": "User logged In"
+            "message": "User logged In",
+            "user": request.session.user
         });
     }
     else {

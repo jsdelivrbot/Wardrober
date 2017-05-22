@@ -3,7 +3,7 @@
  */
 
 
-wardroberapp.controller('homeController', function ($scope, $http) {
+wardroberapp.controller('homeController', function ($scope, $http, $location) {
 
     //$("div#divLoading").addClass('show');
     //$('#preloader').fadeOut('slow',function(){$(this).remove();});
@@ -13,6 +13,7 @@ wardroberapp.controller('homeController', function ($scope, $http) {
          if(data.status != 200) {
              $location.url('/');
          }
+         $scope.user = data.user;
       });
     };
     isUserLoggedIn();
