@@ -34,9 +34,9 @@ exports.postImagesForUserByPuid = function(request, response, image_name) {
             var images = mongo.collection('Images');
             var image_details = mongo.collection('Image_details');
             dbHelper.doesExistInDb(images, {
-                "puid": request.session.user._id
+                "puid": 100
             }, function() {
-                dbHelper.readOne(images, {"puid":request.session.user._id}, null, function(data) {
+                dbHelper.readOne(images, {"puid":100}, null, function(data) {
 
                     //save info of the image i.e detections
                     /**
@@ -55,13 +55,13 @@ exports.postImagesForUserByPuid = function(request, response, image_name) {
 
                     dbHelper.insertIntoCollection(image_details, image_details_post_data, function() {
                         var imageID = image_name;
-                        var userpuid = request.session.user._id;
+                        var userpuid = 100;
                         data[userpuid].images.push(imageID);
                         //console.log(data);
                         //already present in db
 
                         var searchData = {};
-                        searchData.puid = request.session.user._id;
+                        searchData.puid = 100;
                         var postData = {};
                         var imageKey = {};
                         imageKey[userpuid] = data[userpuid];
@@ -86,7 +86,7 @@ exports.postImagesForUserByPuid = function(request, response, image_name) {
                                     console.log('done!');
                                     response.send({
                                         "status" : 200,
-                                        "message" : "image uploaded successfully for user with puid: " + request.session.user._id,
+                                        "message" : "image uploaded successfully for user with puid: " + 100,
                                         "labels": detections
                                     });
                                 });
@@ -118,8 +118,8 @@ exports.postImagesForUserByPuid = function(request, response, image_name) {
                     var imageID = image_name;
                     puidData.images = [];
                     puidData.images.push(imageID);
-                    postData.puid = request.session.user._id;
-                    postData[request.session.user._id] = puidData;
+                    postData.puid = 100;
+                    postData[100] = puidData;
                     dbHelper.insertIntoCollection(images, postData, function() {
                         mongodb.MongoClient.connect(mongoURL, function(error, db) {
                             var bucket = new mongodb.GridFSBucket(db, {
@@ -140,7 +140,7 @@ exports.postImagesForUserByPuid = function(request, response, image_name) {
                                 console.log('done!');
                                 response.send({
                                     "status" : 200,
-                                    "message" : "Image uploaded successfully for user with puid: " + request.session.user._id,
+                                    "message" : "Image uploaded successfully for user with puid: " + 100,
                                     "labels" : detections
                                 });
                             });
@@ -156,14 +156,14 @@ exports.getImageUrlsForUserByPuid = function(request, response) {
     mongo.connect(mongoURL, function() {
         var images = mongo.collection('Images');
         dbHelper.doesExistInDb(images, {
-            "puid" : request.session.user._id
+            "puid" : 100
         }, function() {
-            dbHelper.readOne(images, {"puid": request.session.user._id}, null, function(data) {
+            dbHelper.readOne(images, {"puid": 100}, null, function(data) {
                 //uuid.v4();
                 console.log(JSON.stringify(data));
                 var imageUrls = [];
-                for (var index = 0; index < data[request.session.user._id].images.length; index++) {
-                    var imageUrl = 'api/users/images/' + data[request.session.user._id].images[index];
+                for (var index = 0; index < data[100].images.length; index++) {
+                    var imageUrl = 'api/users/images/' + data[100].images[index];
                     imageUrls.push(imageUrl);
                 }
                 response.send({
@@ -174,7 +174,7 @@ exports.getImageUrlsForUserByPuid = function(request, response) {
         }, function() {
             response.send({
                 "status" : 404,
-                "errmsg" : "Error: No images found for user in db with puid: " + request.session.user._id
+                "errmsg" : "Error: No images found for user in db with puid: " + 100
             });
         });
     });
