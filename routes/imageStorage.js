@@ -86,7 +86,8 @@ exports.postImagesForUserByPuid = function(request, response, image_name) {
                                     console.log('done!');
                                     response.send({
                                         "status" : 200,
-                                        "message" : "image uploaded successfully for user with puid: " + request.session.user._id
+                                        "message" : "image uploaded successfully for user with puid: " + request.session.user._id,
+                                        "labels": detections
                                     });
                                 });
                             });
@@ -139,7 +140,8 @@ exports.postImagesForUserByPuid = function(request, response, image_name) {
                                 console.log('done!');
                                 response.send({
                                     "status" : 200,
-                                    "message" : "Image uploaded successfully for user with puid: " + request.session.user._id
+                                    "message" : "Image uploaded successfully for user with puid: " + request.session.user._id,
+                                    "labels" : detections
                                 });
                             });
                         });
