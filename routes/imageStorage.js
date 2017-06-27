@@ -25,8 +25,7 @@ var vision = require('@google-cloud/vision')({
 
 var API_KEY  = 'AIzaSyCR-FiwIaiBTeCv9CfWLPng9FXdIni99DQ';
 var types = [
-    'label',
-    'web'
+    'label'
 ];
 exports.postImagesForUserByPuid = function(request, response, image_name) {
     vision.detect('public/uploads/' + image_name,  types, function(err, detections, apiResponse) {
