@@ -28,7 +28,7 @@ var types = [
     'label'
 ];
 exports.postImagesForUserByPuid = function(request, response, image_name) {
-    vision.detectSimilar('public/uploads/' + image_name,  function(err, detections, apiResponse) {
+    vision.detect('public/uploads/' + image_name,  types, function(err, detections, apiResponse) {
         //console.log(detections);
         mongo.connect(mongoURL, function() {
             var images = mongo.collection('Images');
