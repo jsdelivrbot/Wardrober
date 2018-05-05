@@ -17,7 +17,7 @@ exports.doLogin = function(request, response) {
     mongo.connect(mongoURL, function() {
         var usersCollection = mongo.collection('Users');
         mongoDbHelper.readOne(usersCollection,{'email':email},null, function(data) {
-            //console.log(data);
+            console.log(data);
             if(data == undefined){
                 response.send({
                     "status": 401,
@@ -26,6 +26,7 @@ exports.doLogin = function(request, response) {
                 var getPassword = data.password;
                 if(password===getPassword){
                     request.session.user = data;
+                    request.session.puid = data.puid;
                     request.session.user.password = "";
                     response.send({
                         "Status":200,
@@ -53,6 +54,7 @@ exports.doSignUp = function(request, response) {
     user.lastname = request.body.lastname;
     user.email = request.body.email;
     user.password = request.body.password;
+    user.puid = Math.floor(Math.random() * 1000000);
     mongo.connect(mongoURL, function() {
         var usersCollection = mongo.collection('Users');
         mongoDbHelper.readOne(usersCollection,{'email':user.email},null,function(data){

@@ -1,7 +1,4 @@
-/**
- * Created by Student on 5/18/17.
- */
-wardroberapp.controller('loginController', function ($scope, $http, $location) {
+documentFinderApp.controller('loginController', function ($scope, $http, $location) {
     //$("div#divLoading").addClass('show');
     //$('#preloader').fadeOut('slow',function(){$(this).remove();});
     var isUserLoggedIn = function() {

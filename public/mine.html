@@ -1,0 +1,92 @@
+<div class="ng-scope wrapper container">
+    <div class="row profile">
+        <div class="col-md-2 w3-panel w3-card">
+            <br>
+            <div class="profile-sidebar" align="center">
+                <div class="profile-userpic">
+                    <img src="https://www.watsonmartin.com/wp-content/uploads/2016/03/default-profile-picture.jpg"
+                         class="img-responsive" height="100" width="100" alt="">
+                </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name" align="center">
+                        <br>
+                        <code>{{user.firstname}} {{user.lastname}}</code>
+                        <br>
+                    </div>
+                </div>
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="/home">Home </a>
+                        </li>
+                        <li>
+                            <a href="/gallery">Uploads </a>
+                        </li>
+                        <li>
+                            <a href="/" ng-click="doLogout()">Logout </a>
+                        </li>
+                        <li>
+                            &nbsp
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <p></p>
+        </div>
+        <div class="col-md-8 w3-panel w3-card">
+            <div class="profile-content">
+                <div class="container">
+                    <h2>Internet mined:</h2>
+                    <p>The image you selected: </p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img ng-src="/api/users/images/{{image_name}}" class="img-rounded" alt="Cinque Terre"
+                                 width="360" height="270">
+                        </div>
+                        <div class="col-md-4">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Text found in image</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="label in labels track by $index">
+                                        <td>{{label}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br><br>
+                    <p>The matches we found: </p>
+                    <div ng-repeat="urlentry in urls">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img ng-src="{{urlentry.url}}" class="img-rounded" alt="Cinque Terre" width="360"
+                                     height="270">
+                            </div>
+                            <div class="col-md-4">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Labels</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>{{urlentry.labels}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

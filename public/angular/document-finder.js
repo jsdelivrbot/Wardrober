@@ -2,9 +2,9 @@
  * Created by Student on 5/18/17.
  */
 
-var wardroberapp = angular.module('wardroberapp', ['ngRoute']);
+var documentFinderApp = angular.module('documentFinderApp', ['ngRoute']);
 //console.log(history.config);
-wardroberapp.config(['$routeProvider', '$locationProvider',
+documentFinderApp.config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider, $routeParams, $location) {
         $routeProvider
             .when('/', {
@@ -19,12 +19,9 @@ wardroberapp.config(['$routeProvider', '$locationProvider',
             }).when('/gallery', {
                 templateUrl: 'gallery.html',
                 controller: 'galleryController'
-            }).when('/api/users/images/:image_name/matches', {
-                templateUrl: 'matcher.html',
-                controller: 'matchController'
-            }).when('/api/users/images/:image_name/similar', {
-                templateUrl: 'similar.html',
-                controller: 'similarController'
+            }).when('/api/users/images/:image_name/mine', {
+                templateUrl: 'mine.html',
+                controller: 'mineController'
             })
             .otherwise({
                 templateUrl: 'login.html',

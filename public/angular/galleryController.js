@@ -2,7 +2,7 @@
  * Created by Student on 5/18/17.
  */
 
-wardroberapp.controller('galleryController', function ($scope, $http, $location) {
+documentFinderApp.controller('galleryController', function ($scope, $http, $location) {
     var isUserLoggedIn = function() {
         var isLoggedInResponse = $http.get('/api/isLoggedIn');
         isLoggedInResponse.success(function(data) {

@@ -1,13 +1,8 @@
-/**
- * Created by Student on 5/18/17.
- */
-
 var mongo = require("./mongo");
 var mongodb = require('mongodb');
 var fs = require('fs');
 var http = require('http');
 var util = require('util');
-
 
 var mongoURL = "mongodb://vaishnavi:marias@ds147551.mlab.com:47551/wardrober";
 var dbHelper = require('./mongo-db-helper');
@@ -15,10 +10,10 @@ var uuid = require('uuid');
 var path = require('path');
 
 var vision = require('@google-cloud/vision')({
-    projectId: 'wardrober-168122',
+    projectId: 'divine-display-203219',
 
     // The path to your key file:
-    keyFilename: 'public/wardrober.json'
+    keyFilename: 'public/document-finder.json'
 });
 
 // Read the text from an image.
@@ -28,69 +23,34 @@ var types = [
     'label'
 ];
 exports.postImagesForUserByPuid = function(request, response, image_name) {
-    vision.detect('public/uploads/' + image_name,  types, function(err, detections, apiResponse) {
-        //console.log(detections);
+    vision.detectText('public/uploads/' + image_name,  function(err, text, apiResponse) {
         mongo.connect(mongoURL, function() {
             var images = mongo.collection('Images');
             var image_details = mongo.collection('Image_details');
             dbHelper.doesExistInDb(images, {
-                "puid": 100
+                "puid": request.session.puid
             }, function() {
-                dbHelper.readOne(images, {"puid":100}, null, function(data) {
-
-                    //save info of the image i.e detections
-                    /**
-                     *
-                     * {
-                     *    "image": "image.png",
-                     *    "labels": detections
-                     * }
-                     *
-                     * @type {{}}
-                     */
-                    //image_details
+                dbHelper.readOne(images, {"puid":request.session.puid}, null, function(data) {
+                 //image_details
                     var image_details_post_data  = {};
                     image_details_post_data.image = image_name;
-                    image_details_post_data.labels = detections;
+                    image_details_post_data.text = text;
 
                     dbHelper.insertIntoCollection(image_details, image_details_post_data, function() {
                         var imageID = image_name;
-                        var userpuid = 100;
+                        var userpuid = request.session.puid;
                         data[userpuid].images.push(imageID);
                         //console.log(data);
                         //already present in db
 
                         var searchData = {};
-                        searchData.puid = 100;
+                        searchData.puid = request.session.puid;
                         var postData = {};
                         var imageKey = {};
                         imageKey[userpuid] = data[userpuid];
                         postData['$set'] = imageKey;
                         dbHelper.updateCollection(images, searchData, postData, function() {
-                            mongodb.MongoClient.connect(mongoURL, function(error, db) {
-                                var bucket = new mongodb.GridFSBucket(db, {
-                                    chunkSizeBytes: 1024,
-                                    bucketName: 'images'
-                                });
-                                fs.createReadStream(request.file.path).
-                                pipe(bucket.openUploadStream(imageID)).
-                                on('error', function(error) {
-                                    if(error) {
-                                        response.send({
-                                            "status" : 500,
-                                            "errmsg" : "Error: Cannot upload image: " + error
-                                        });
-                                    }
-                                }).
-                                on('finish', function() {
-                                    console.log('done!');
-                                    response.send({
-                                        "status" : 200,
-                                        "message" : "image uploaded successfully for user with puid: " + 100,
-                                        "labels": detections
-                                    });
-                                });
-                            });
+                            storeInMongoImage(request, response, imageID, text);
                         });
                     });
                 });
@@ -98,55 +58,47 @@ exports.postImagesForUserByPuid = function(request, response, image_name) {
             function() {
                 var puidData = {};
                 var postData = {};
-
-                //save info of the image i.e detections
-                /**
-                 *
-                 * {
-                     *  "image": "image.png",
-                     *  "labels": detections
-                     * }
-                 *
-                 *
-                 */
-                //image_details
                 var image_details_post_data  = {};
                 image_details_post_data.image = image_name;
-                image_details_post_data.labels = detections;
+                image_details_post_data.text = text;
 
                 dbHelper.insertIntoCollection(image_details, image_details_post_data, function() {
                     var imageID = image_name;
                     puidData.images = [];
                     puidData.images.push(imageID);
-                    postData.puid = 100;
-                    postData[100] = puidData;
+                    postData.puid = request.session.puid;
+                    postData[request.session.puid] = puidData;
                     dbHelper.insertIntoCollection(images, postData, function() {
-                        mongodb.MongoClient.connect(mongoURL, function(error, db) {
-                            var bucket = new mongodb.GridFSBucket(db, {
-                                chunkSizeBytes: 1024,
-                                bucketName: 'images'
-                            });
-                            fs.createReadStream(request.file.path).
-                            pipe(bucket.openUploadStream(imageID)).
-                            on('error', function(error) {
-                                if(error) {
-                                    response.send({
-                                        "status" : 500,
-                                        "errmsg" : "Error: Cannot upload image: " + error
-                                    });
-                                }
-                            }).
-                            on('finish', function() {
-                                console.log('done!');
-                                response.send({
-                                    "status" : 200,
-                                    "message" : "Image uploaded successfully for user with puid: " + 100,
-                                    "labels" : detections
-                                });
-                            });
-                        });
+                        storeInMongoImage(request, response, imageID, text);
                     });
                 });
+            });
+        });
+    });
+};
+
+var storeInMongoImage = function(request, response, imageID, text) {
+    mongodb.MongoClient.connect(mongoURL, function(error, db) {
+        var bucket = new mongodb.GridFSBucket(db, {
+            chunkSizeBytes: 1024,
+            bucketName: 'images'
+        });
+        fs.createReadStream(request.file.path).
+        pipe(bucket.openUploadStream(imageID)).
+        on('error', function(error) {
+            if(error) {
+                response.send({
+                    "status" : 500,
+                    "errmsg" : "Error: Cannot upload image: " + error
+                });
+            }
+        }).
+        on('finish', function() {
+            console.log('done!');
+            response.send({
+                "status" : 200,
+                "message" : "Image uploaded successfully for user with puid: " + 100,
+                "labels" : text
             });
         });
     });
@@ -156,14 +108,14 @@ exports.getImageUrlsForUserByPuid = function(request, response) {
     mongo.connect(mongoURL, function() {
         var images = mongo.collection('Images');
         dbHelper.doesExistInDb(images, {
-            "puid" : 100
+            "puid" : request.session.puid
         }, function() {
-            dbHelper.readOne(images, {"puid": 100}, null, function(data) {
+            dbHelper.readOne(images, {"puid": request.session.puid}, null, function(data) {
                 //uuid.v4();
                 console.log(JSON.stringify(data));
                 var imageUrls = [];
-                for (var index = 0; index < data[100].images.length; index++) {
-                    var imageUrl = 'api/users/images/' + data[100].images[index];
+                for (var index = 0; index < data[request.session.puid].images.length; index++) {
+                    var imageUrl = 'api/users/images/' + data[request.session.puid].images[index];
                     imageUrls.push(imageUrl);
                 }
                 response.send({

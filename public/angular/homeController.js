@@ -1,9 +1,4 @@
-/**
- * Created by Student on 5/18/17.
- */
-
-
-wardroberapp.controller('homeController', function ($scope, $http, $location) {
+documentFinderApp.controller('homeController', function ($scope, $http, $location) {
 
     //$("div#divLoading").addClass('show');
     //$('#preloader').fadeOut('slow',function(){$(this).remove();});

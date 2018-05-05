@@ -1,8 +1,4 @@
-/**
- * Created by Student on 5/18/17.
- */
-
-wardroberapp.controller('signupController', function ($scope, $http, $location) {
+documentFinderApp.controller('signupController', function ($scope, $http, $location) {
 
     var isUserLoggedIn = function() {
         var isLoggedInResponse = $http.get('/api/isLoggedIn');

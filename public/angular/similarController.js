@@ -1,8 +1,4 @@
-/**
- * Created by Vaishampayan Reddy on 5/21/2017.
- */
-
-wardroberapp.controller('similarController', function ($scope, $http, $location,  $routeParams) {
+documentFinderApp.controller('similarController', function ($scope, $http, $location,  $routeParams) {
     //$("div#divLoading").addClass('show');
     //$('#preloader').fadeOut('slow',function(){$(this).remove();});
     var isUserLoggedIn = function() {

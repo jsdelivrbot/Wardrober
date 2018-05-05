@@ -18,7 +18,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //app.use(express.methodOverride());
-app.use(session({resave: true, saveUninitialized: true, secret: 'wardroberApplication', cookie: { maxAge: 6000000 }}));
+app.use(session({resave: true, saveUninitialized: true, secret: 'documentFinder', cookie: { maxAge: 6000000 }}));
 
 app.get('/', function(req, res) {
     res.sendfile(__dirname + '/public/index.html');
@@ -31,7 +31,7 @@ app.use(logger('dev'));
 
 var authentication = require('./routes/authentication');
 var imageStorage = require('./routes/imageStorage');
-var wardrobeMatcher = require('./routes/wardrobeMatcher');
+var wardrobeMatcher = require('./routes/documentMatcher');
 
 app.post('/api/login', authentication.doLogin);
 app.post('/api/signup', authentication.doSignUp);
@@ -79,9 +79,8 @@ app.post('/api/users/images', upload.single('image'), function(request, response
 });
 app.get('/api/users/images', imageStorage.getImageUrlsForUserByPuid);
 app.get('/api/users/images/:imageName', imageStorage.getImageByImageUrl);
-app.get('/api/users/images/:imageName/results/different', wardrobeMatcher.getMatchingImageURLs);
-app.get('/api/users/images/:imageName/results/similar', wardrobeMatcher.getSimilarImageURLs);
 app.get('/api/users/images/:imageName/labels', wardrobeMatcher.getImageLabels);
+app.get('/api/users/images/:imageName/results/mine', wardrobeMatcher.getMinedDataFromWeb);
 
 app.get('/', function(request, response) {
     response.render('pages/index');

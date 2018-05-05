@@ -1,74 +1,82 @@
 <div class="ng-scope wrapper container">
-  <div class="row profile">
-    <div class="col-md-2 w3-panel w3-card">
-      <br>
-      <div class="profile-sidebar" align="center">
-        <!-- SIDEBAR USERPIC -->
-        <div class="profile-userpic">
-          <img src="https://www.watsonmartin.com/wp-content/uploads/2016/03/default-profile-picture.jpg" class="img-responsive" height="100" width="100" alt="">
-        </div>
-        <div class="profile-usertitle">
-          <div class="profile-usertitle-name" align="center">
+    <div class="row profile">
+        <div class="col-md-2 w3-panel w3-card">
             <br>
-            <code>{{user.firstname}} {{user.lastname}}</code>
-            <br>
-          </div>
-        </div>
-        <div class="profile-usermenu">
-          <ul class="nav">
-            <li class="active">
-              <a href="/home">Home </a>
-            </li>
-            <li>
-              <a href="/gallery">Gallery</a>
-            </li>
-            <li>
-              <a href="/" ng-click="doLogout()">Logout </a>
-            </li>
-            <li>
-              &nbsp
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-1">
-      <p></p>
-    </div>
-    <style>
-      .rcorners2 {
-        border-radius: 25px;
-        border: 2px solid #73AD21;
-        padding: 20px;
-      }
-    </style>
-    <div class="col-md-9 w3-panel w3-card">
-      <div class="profile-content">
-        <div class="container">
-          <h2>My Gallery</h2>
-          <p>All the images uploaded are: </p>
-          <div class="row">
-            <div ng-repeat="url in urls">
-              <div class="col-md-5">
-                <hr>
-                <img ng-src="{{url}}" alt = "Generic placeholder thumbnail" width="360" height="270">
-                <a href="{{url}}/matches" class="btn btn-danger">Get matching clothes from Wardrober</a>
-                <a href="{{url}}/similar" class="btn btn-success">Get similar clothes from Wardrober</a>
-              </div>
-              <div ng-if="$index % 2 == 1">
-                <div class="col-md-2">
-                  <p>
-                  </p>
+            <div class="profile-sidebar" align="center">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                    <img src="https://www.watsonmartin.com/wp-content/uploads/2016/03/default-profile-picture.jpg"
+                         class="img-responsive" height="100" width="100" alt="">
                 </div>
-                <br>
-                <br>
-              </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name" align="center">
+                        <br>
+                        <code>{{user.firstname}} {{user.lastname}}</code>
+                        <br>
+                    </div>
+                </div>
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="/home">Home </a>
+                        </li>
+                        <li>
+                            <a href="/gallery">Uploads</a>
+                        </li>
+                        <li>
+                            <a href="/" ng-click="doLogout()">Logout </a>
+                        </li>
+                        <li>
+                            &nbsp
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </div>
         </div>
-        <br>
-        <br>
-      </div>
+        <div class="col-md-1">
+            <p></p>
+        </div>
+        <style>
+            .rcorners2 {
+                border-radius: 25px;
+                border: 2px solid #73AD21;
+                padding: 20px;
+            }
+        </style>
+        <div class="col-md-9 w3-panel w3-card">
+            <div class="row">
+                <div class="col-md-2">
+                    &nbsp&nbsp
+                </div>
+                <div class="col-md-8">
+                    <div class="profile-content">
+                        <div class="container">
+                            <h2>My uploads</h2>
+                            <p>All the images uploaded are: </p>
+                            <div class="row">
+                                <div ng-repeat="url in urls">
+                                    <div class="row">
+                                        <hr>
+                                        <img ng-src="{{url}}" alt="Generic placeholder thumbnail" width="360" height="270">
+                                        <a href="{{url}}/mine" class="btn btn-danger">Mine the internet</a>
+                                    </div>
+                                    <div ng-if="$index % 2 == 1">
+                                        <div class="col-md-2">
+                                            <p>
+                                            </p>
+                                        </div>
+                                        <br>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </div>
 </div>
